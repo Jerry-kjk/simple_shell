@@ -217,7 +217,7 @@ The operators `&&` and `||` have equal precedence, followed by `;`.
 
 ## Authors ##
 
-* **👤JERRY KAJIK** - [jerrykajik@gmail.com] (https://github.com/jerry-kjk)
-* **👤ELIJAH BALOGUN** - [] (https://github.com/dzabeligan)
+* **👤 JERRY KAJIK** - [jerrykajik@gmail.com] (https://github.com/jerry-kjk)
+* **👤 ELIJAH BALOGUN** - [] (https://github.com/dzabeligan)
 
 
