@@ -49,7 +49,7 @@ extern char **environ;
  * @status: the return status of the last exec'd command
  * @cmd_buf: address of pointer to cmd_buf, on if chaining
  * @cmd_buf_type: CMD_type ||, &&, ;
- * @readfd: the fd from which to read line input
+ * @fd: the fd from which to read line input
  * @histcount: the history line number count
  */
 typedef struct Shell_info
@@ -71,7 +71,7 @@ typedef struct Shell_info
 
 	char **cmd_buf; /* pointer to cmd ; chain buffer, for memory mangement */
 	int cmd_buf_type; /* CMD_type ||, &&, ; */
-	int readfd;
+	int fd;
 	int histcount;
 } Shell_info_t;
 

@@ -42,11 +42,9 @@ int main(int argc, char **argv)
 
 			return (EXIT_FAILURE);
 		}
-		shell_info.readfd = fd;
+		shell_info.fd = fd;
 	}
 
-	populate_env_list(&shell_info);
-	read_history(&shell_info);
 	shell_run(&shell_info, argv);
 
 	return (EXIT_SUCCESS);

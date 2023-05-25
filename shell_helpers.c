@@ -100,8 +100,8 @@ void free_info(Shell_info_t *info, int all)
 		ffree(info->environ);
 		info->environ = NULL;
 		bfree((void **)info->cmd_buf);
-		if (info->readfd > 2)
-			close(info->readfd);
+		if (info->fd > 2)
+			close(info->fd);
 		_putchar(BUFFER_FLUSH);
 	}
 }
