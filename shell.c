@@ -12,7 +12,7 @@ int shell_run(Shell_info_t *shell_info, char **av)
 	ssize_t r = 0;
 	int builtin_ret = 0;
 
-	populate_env_list(shell_info);
+	build_env_list(shell_info);
 	read_history(shell_info);
 
 	while (r != -1 && builtin_ret != -2)

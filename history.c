@@ -1,8 +1,5 @@
 #include "shell.h"
 
-#define HIST_FILE ".simple_shell_history"
-#define HIST_MAX 4096
-
 /**
  * get_history_file - gets the history file
  * @info: parameter struct
@@ -12,18 +9,24 @@
 static char *get_history_file(Shell_info_t *info)
 {
 	char *buf, *dir;
+	const char *HIST_FILE_NAME = ".simple_shell_history";
+	size_t len = 0;
 
-	dir = _getenv(info, "HOME=");
+	dir = getenv_with_key(info, "HOME=");
+
 	if (!dir)
 		return (NULL);
-	buf = (char *)malloc(
-		sizeof(char) * (_strlen(dir) + _strlen((char *)HIST_FILE) + 2));
+	len = sizeof(char) * (_strlen(dir) + _strlen((char *)HIST_FILE_NAME) + 2);
+
+	buf = (char *)malloc(len);
 	if (!buf)
 		return (NULL);
-	buf[0] = 0;
+
+	_memset(buf, '\0', len);
 	_strcpy(buf, dir);
 	_strcat(buf, (char *)"/");
-	_strcat(buf, (char *)HIST_FILE);
+	_strcat(buf, (char *)HIST_FILE_NAME);
+
 	return (buf);
 }
 
@@ -59,6 +62,8 @@ static int renumber_history(Shell_info_t *info)
 	list_t *node = info->history;
 	int i = 0;
 
+	if (node->num == 0)
+		return (0);
 	while (node)
 	{
 		node->num = i++;
@@ -79,6 +84,7 @@ int read_history(Shell_info_t *info)
 	ssize_t fd, rdlen, fsize = 0;
 	struct stat st;
 	char *buf = NULL, *filename = get_history_file(info);
+	const int HIST_MAX = 4096;
 
 	if (!filename)
 		return (0);

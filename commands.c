@@ -100,7 +100,7 @@ void find_cmd(Shell_info_t *info)
 	if (!k)
 		return;
 
-	path = find_path(info, _getenv(info, "PATH="), info->argv[0]);
+	path = find_path(info, getenv_with_key(info, "PATH="), info->argv[0]);
 	if (path)
 	{
 		info->path = path;
@@ -108,7 +108,7 @@ void find_cmd(Shell_info_t *info)
 	}
 	else
 	{
-		if ((interactive(info) || _getenv(info, "PATH=")
+		if ((interactive(info) || getenv_with_key(info, "PATH=")
 				|| info->argv[0][0] == '/')
 			&& is_cmd(info, info->argv[0]))
 			fork_cmd(info);

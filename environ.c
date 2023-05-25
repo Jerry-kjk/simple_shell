@@ -1,13 +1,13 @@
 #include "shell.h"
 
 /**
- * populate_env_list - populates env linked list
+ * build_env_list - populates env linked list
  * @info: Structure containing potential arguments. Used to maintain
  * constant function prototype.
  *
  * Return: Always 0
  */
-int populate_env_list(Shell_info_t *info)
+int build_env_list(Shell_info_t *info)
 {
 	list_t *node = NULL;
 	size_t i;
@@ -19,20 +19,20 @@ int populate_env_list(Shell_info_t *info)
 }
 
 /**
- * _getenv - gets the value of an environ variable
+ * getenv_with_key - gets the value of an environ variable
  * @info: Structure containing potential arguments. Used to maintain
- * @name: env var name
+ * @key: env var key
  *
  * Return: the value
  */
-char *_getenv(Shell_info_t *info, const char *name)
+char *getenv_with_key(Shell_info_t *info, const char *key)
 {
 	list_t *node = info->env;
-	char *p;
 
 	while (node)
 	{
-		p = starts_with(node->str, name);
+		char *p = starts_with(node->str, key);
+
 		if (p && *p)
 			return (p);
 		node = node->next;
@@ -84,9 +84,9 @@ int _setenv(Shell_info_t *info, char *var, char *value)
 
 /**
  * get_environ - returns the string array copy of our environ
- * @info: Structure containing potential arguments. Used to maintain
- * constant function prototype.
- * Return: Always 0
+ * @info: Shell_info_t
+ *
+ * Return: Pointer to environ stored in Shell_info
  */
 char **get_environ(Shell_info_t *info)
 {
@@ -95,5 +95,6 @@ char **get_environ(Shell_info_t *info)
 		info->environ = list_to_strings(info->env);
 		info->env_changed = 0;
 	}
+
 	return (info->environ);
 }

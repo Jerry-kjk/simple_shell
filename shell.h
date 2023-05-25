@@ -122,8 +122,8 @@ void sigintHandler(__attribute__((unused)) int sig_num);
 int _putfd(char c, int fd);
 int _putsfd(char *str, int fd);
 
-int populate_env_list(Shell_info_t *shell_info);
-char *_getenv(Shell_info_t *shell_info, const char *name);
+int build_env_list(Shell_info_t *shell_info);
+char *getenv_with_key(Shell_info_t *shell_info, const char *name);
 char **get_environ(Shell_info_t *info);
 int _setenv(Shell_info_t *info, char *var, char *value);
 
